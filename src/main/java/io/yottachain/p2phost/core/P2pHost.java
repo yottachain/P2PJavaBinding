@@ -7,6 +7,8 @@ import com.sun.jna.StringArray;
 import io.yottachain.p2phost.core.exception.P2pHostException;
 import io.yottachain.p2phost.core.interfaces.MsgCallback;
 import io.yottachain.p2phost.core.wrapper.P2pHostWrapper;
+import io.yottachain.p2phost.utils.Base58;
+import io.yottachain.p2phost.utils.Ripemd160;
 
 public class P2pHost {
 
@@ -162,7 +164,12 @@ public class P2pHost {
             @Override
             public Pointer invoke(String msgType, Pointer data, long size, String publicKey) {
                 byte[] msg = data.getByteArray(0, (int)size);
-                byte[] ret = cb.onMessage(msgType, msg, publicKey);
+                byte[] bytes = Base58.decode(publicKey);
+                byte[] csum = Ripemd160.from(bytes).bytes();
+                byte[] c = new byte[bytes.length+4];
+                System.arraycopy(bytes, 0, c, 0, bytes.length);
+                System.arraycopy(csum, 0, c, bytes.length, 4);
+                byte[] ret = cb.onMessage(msgType, msg, Base58.encode(c));
                 Pointer ptr = new Memory(ret.length);
                 for (int i=0; i<ret.length; i++) {
                     ptr.setByte(i, ret[i]);
@@ -187,7 +194,7 @@ public class P2pHost {
             for (String addr : addrs) {
                 System.out.println(addr);
             }
-            P2pHost.registerHandler("test", registerUserCallback(new MsgCallback() {
+            P2pHost.registerHandler("/test", registerUserCallback(new MsgCallback() {
                 @Override
                 public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
                     System.out.println("PubKey: " + publicKey);
@@ -205,7 +212,7 @@ public class P2pHost {
     }
 
     public static void main2() {
-        String privkey = "5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ";
+        String privkey = "5J1c7WCgjLLXieWmfRujQeSHebhFzoDKEV5UWd3nep5MDoFP3bV";
         try {
             P2pHost.start(9999, privkey);
             System.out.println("id: " + P2pHost.id());
@@ -214,7 +221,7 @@ public class P2pHost {
                 System.out.println(addr);
             }
             P2pHost.connect("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", new String[]{"/ip4/127.0.0.1/tcp/8888"});
-            byte[] ret = P2pHost.sendMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", "test", "hello world".getBytes());
+            byte[] ret = P2pHost.sendMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", "/test", "hello world".getBytes());
             System.out.println("Received: " + new String(ret));
             P2pHost.close();
         } catch (P2pHostException ex) {
