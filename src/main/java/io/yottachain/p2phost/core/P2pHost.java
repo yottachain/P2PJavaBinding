@@ -135,8 +135,13 @@ public class P2pHost {
             public Pointer invoke(String msgType, Pointer data, long size, String publicKey) {
                 Pointer ptr = null;
                 try {
+                    byte[] bytes = Base58.decode(publicKey);
+                    byte[] csum = Ripemd160.from(bytes).bytes();
+                    byte[] c = new byte[bytes.length+4];
+                    System.arraycopy(bytes, 0, c, 0, bytes.length);
+                    System.arraycopy(csum, 0, c, bytes.length, 4);
                     byte[] msg = data.getByteArray(0, (int) size);
-                    byte[] ret = callback.onMessage(msgType, msg, publicKey);
+                    byte[] ret = callback.onMessage(msgType, msg, Base58.encode(c));
                     ptr = new Memory(ret.length);
                     for (int i = 0; i < ret.length; i++) {
                         ptr.setByte(i, ret[i]);
@@ -154,85 +159,6 @@ public class P2pHost {
                 }
             }
         };
-    }
-
-    public static P2pHostWrapper.P2pHostLib.P2pHostCallback callback;
-
-    public static P2pHostWrapper.P2pHostLib.P2pHostCallback registerUserCallback(final MsgCallback cb) {
-        callback = new P2pHostWrapper.P2pHostLib.P2pHostCallback(){
-
-            @Override
-            public Pointer invoke(String msgType, Pointer data, long size, String publicKey) {
-                byte[] msg = data.getByteArray(0, (int)size);
-                byte[] bytes = Base58.decode(publicKey);
-                byte[] csum = Ripemd160.from(bytes).bytes();
-                byte[] c = new byte[bytes.length+4];
-                System.arraycopy(bytes, 0, c, 0, bytes.length);
-                System.arraycopy(csum, 0, c, bytes.length, 4);
-                byte[] ret = cb.onMessage(msgType, msg, Base58.encode(c));
-                Pointer ptr = new Memory(ret.length);
-                for (int i=0; i<ret.length; i++) {
-                    ptr.setByte(i, ret[i]);
-                }
-                Pointer retp = P2pHostWrapper.P2pHostLib.INSTANCE.CreateSendMsgRet2(ptr, ret.length, null);
-                Native.free(Pointer.nativeValue(ptr));
-                Pointer.nativeValue(ptr, 0);
-                return retp;
-            }
-        };
-        return callback;
-    }
-
-
-
-    public static void main1() {
-        String privkey = "5JdDoNZwSADC3KG7xCh7mCF62fKp86sLf3GUNDY2B8t2UUB9HdJ";
-        try {
-            P2pHost.start(8888, privkey);
-            System.out.println("id: " + P2pHost.id());
-            String[] addrs = P2pHost.addrs();
-            for (String addr : addrs) {
-                System.out.println(addr);
-            }
-            P2pHost.registerHandler("/test", registerUserCallback(new MsgCallback() {
-                @Override
-                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
-                    System.out.println("PubKey: " + publicKey);
-                    System.out.println("Received: " + new String(msg));
-                    return ((new String(msg))+": acked").getBytes();
-                }
-            }));
-            Thread.sleep(1000000);
-            //P2pHost.close();
-        } catch (P2pHostException ex) {
-            ex.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main2() {
-        String privkey = "5J1c7WCgjLLXieWmfRujQeSHebhFzoDKEV5UWd3nep5MDoFP3bV";
-        try {
-            P2pHost.start(9999, privkey);
-            System.out.println("id: " + P2pHost.id());
-            String[] addrs = P2pHost.addrs();
-            for (String addr : addrs) {
-                System.out.println(addr);
-            }
-            P2pHost.connect("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", new String[]{"/ip4/127.0.0.1/tcp/8888"});
-            byte[] ret = P2pHost.sendMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", "/test", "hello world".getBytes());
-            System.out.println("Received: " + new String(ret));
-            P2pHost.close();
-        } catch (P2pHostException ex) {
-            ex.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        main2();
     }
 
 }

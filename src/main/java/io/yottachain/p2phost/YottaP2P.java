@@ -124,7 +124,7 @@ public class YottaP2P {
 
     public static void main(String[] args) throws Exception {
         //首先必须先启动P2P服务，9999为端口，5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ为私钥（Base58形式，节点之间须不同）
-        YottaP2P.start(9999, "5HzPb6oWhEzbX8gzKuf2JTFX9uHbkd5DvmXd1T79yEfmKQ1PosY");
+        YottaP2P.start(9999, "5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ");
         //打印当前节点ID（由公钥生成，Base58形式）
         System.out.println(YottaP2P.id());
         //打印监听地址列表
