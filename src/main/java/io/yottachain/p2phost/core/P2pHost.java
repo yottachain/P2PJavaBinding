@@ -96,12 +96,12 @@ public class P2pHost {
         Pointer.nativeValue(msgPtr, 0); //avoid duplicate free when garbage collecting
         if (sendMsgRetPtr != null) {
             try {
-                P2pHostWrapper.SendMsgRet senMsgRet = new P2pHostWrapper.SendMsgRet(sendMsgRetPtr);
-                if (senMsgRet.error != null) {
-                    String err = senMsgRet.error.getString(0);
+                P2pHostWrapper.SendMsgRet sendMsgRet = new P2pHostWrapper.SendMsgRet(sendMsgRetPtr);
+                if (sendMsgRet.error != null) {
+                    String err = sendMsgRet.error.getString(0);
                     throw new P2pHostException(err);
                 }
-                byte[] msgRet = senMsgRet.msg.getByteArray(0, (int)senMsgRet.size);
+                byte[] msgRet = sendMsgRet.msg.getByteArray(0, (int)sendMsgRet.size);
                 return msgRet;
             } finally {
                 P2pHostWrapper.P2pHostLib.INSTANCE.FreeSendMsgRet(sendMsgRetPtr);
