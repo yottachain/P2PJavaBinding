@@ -4,10 +4,10 @@ import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.StringArray;
+import io.jafka.jeos.util.Base58;
 import io.yottachain.p2phost.core.exception.P2pHostException;
 import io.yottachain.p2phost.core.interfaces.MsgCallback;
 import io.yottachain.p2phost.core.wrapper.P2pHostWrapper;
-import io.yottachain.p2phost.utils.Base58;
 import io.yottachain.p2phost.utils.Ripemd160;
 
 public class P2pHost {
