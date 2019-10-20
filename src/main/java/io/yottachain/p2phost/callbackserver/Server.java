@@ -1,6 +1,5 @@
 package io.yottachain.p2phost.callbackserver;
 
-import io.jafka.jeos.util.Base58;
 import io.jafka.jeos.util.ecc.Hex;
 import io.undertow.Undertow;
 import io.undertow.UndertowOptions;
@@ -46,12 +45,12 @@ public class Server {
                 .setIoThreads(iothreads)
                 .setWorkerThreads(workerThreads)
                 .setServerOption(UndertowOptions.ENABLE_HTTP2, true)
-                .setServerOption(UndertowOptions.HTTP2_SETTINGS_MAX_CONCURRENT_STREAMS, 10)
+                .setServerOption(UndertowOptions.HTTP2_SETTINGS_MAX_CONCURRENT_STREAMS, 100)
                 .setServerOption(UndertowOptions.HTTP2_SETTINGS_HEADER_TABLE_SIZE, 8192)
                 .setServerOption(UndertowOptions.HTTP2_SETTINGS_ENABLE_PUSH, true)
                 .setServerOption(UndertowOptions.HTTP2_SETTINGS_INITIAL_WINDOW_SIZE, 65535)
                 .setServerOption(UndertowOptions.HTTP2_SETTINGS_MAX_FRAME_SIZE, 16384)
-                .addHttpListener(port, "127.0.0.1")
+                .addHttpListener(port, "0.0.0.0")
                 .setHandler(new HttpHandler() {
                     public void handleRequest(final HttpServerExchange exchange) throws Exception {
                         if (exchange.isInIoThread()) {

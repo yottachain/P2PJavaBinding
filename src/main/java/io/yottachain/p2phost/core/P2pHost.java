@@ -8,11 +8,12 @@ import io.jafka.jeos.util.Base58;
 import io.yottachain.p2phost.core.exception.P2pHostException;
 import io.yottachain.p2phost.core.interfaces.MsgCallback;
 import io.yottachain.p2phost.core.wrapper.P2pHostWrapper;
+import io.yottachain.p2phost.interfaces.P2pHostInterface;
 import io.yottachain.p2phost.utils.Ripemd160;
 
-public class P2pHost {
+public class P2pHost implements P2pHostInterface {
 
-    public static void start(int port, String privateKey) throws P2pHostException {
+    public P2pHost(int port, String privateKey) throws P2pHostException {
         Pointer errPtr = P2pHostWrapper.P2pHostLib.INSTANCE.StartWrp(port, privateKey);
         if (errPtr != null) {
             String err = errPtr.getString(0);
@@ -21,7 +22,7 @@ public class P2pHost {
         }
     }
 
-    public static void close() throws P2pHostException {
+    public void close() throws P2pHostException {
         Pointer errPtr = P2pHostWrapper.P2pHostLib.INSTANCE.CloseWrp();
         if (errPtr != null) {
             String err = errPtr.getString(0);
@@ -30,7 +31,7 @@ public class P2pHost {
         }
     }
 
-    public static String id() throws P2pHostException {
+    public String id() throws P2pHostException {
         Pointer idRetPtr = P2pHostWrapper.P2pHostLib.INSTANCE.IDWrp();
         if (idRetPtr != null) {
             try {
@@ -48,7 +49,7 @@ public class P2pHost {
         }
     }
 
-    public static String[] addrs() throws P2pHostException {
+    public String[] addrs() throws P2pHostException {
         Pointer addrsRetPtr = P2pHostWrapper.P2pHostLib.INSTANCE.AddrsWrp();
         if (addrsRetPtr != null) {
             try {
@@ -67,7 +68,7 @@ public class P2pHost {
         }
     }
 
-    public static void connect(String nodeId, String[] addrs) throws P2pHostException {
+    public void connect(String nodeId, String[] addrs) throws P2pHostException {
         Pointer paddrs = new StringArray(addrs);
         Pointer errPtr = P2pHostWrapper.P2pHostLib.INSTANCE.ConnectWrp(nodeId, paddrs, addrs.length);
         if (errPtr != null) {
@@ -77,7 +78,7 @@ public class P2pHost {
         }
     }
 
-    public static void disconnect(String nodeId) throws P2pHostException {
+    public void disconnect(String nodeId) throws P2pHostException {
         Pointer errPtr = P2pHostWrapper.P2pHostLib.INSTANCE.DisconnectWrp(nodeId);
         if (errPtr != null) {
             String err = errPtr.getString(0);
@@ -86,7 +87,7 @@ public class P2pHost {
         }
     }
 
-    public static byte[] sendMsg(String nodeId, String msgType, byte[] msg) throws P2pHostException {
+    public byte[] sendMsg(String nodeId, String msgType, byte[] msg) throws P2pHostException {
         Pointer msgPtr = new Memory(Native.getNativeSize(Byte.TYPE) * msg.length);
         for (int i=0; i<msg.length; i++) {
             msgPtr.setByte(i, msg[i]);
@@ -111,7 +112,7 @@ public class P2pHost {
         }
     }
 
-    public static void registerHandler(String msgType, P2pHostWrapper.P2pHostLib.P2pHostCallback callback) throws P2pHostException {
+    public void registerHandler(String msgType, P2pHostWrapper.P2pHostLib.P2pHostCallback callback) throws P2pHostException {
         Pointer errPtr = P2pHostWrapper.P2pHostLib.INSTANCE.RegisterHandlerWrp(msgType, callback);
         if (errPtr != null) {
             String err = errPtr.getString(0);
@@ -120,7 +121,7 @@ public class P2pHost {
         }
     }
 
-    public static void unregisterHandler(String msgType) throws P2pHostException {
+    public void unregisterHandler(String msgType) throws P2pHostException {
         Pointer errPtr = P2pHostWrapper.P2pHostLib.INSTANCE.UnregisterHandlerWrp(msgType);
         if (errPtr != null) {
             String err = errPtr.getString(0);

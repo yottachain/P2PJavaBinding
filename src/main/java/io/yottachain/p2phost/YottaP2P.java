@@ -1,59 +1,151 @@
 package io.yottachain.p2phost;
 
-import com.sun.jna.CallbackThreadInitializer;
-import com.sun.jna.Native;
+import com.ibm.etcd.api.RangeResponse;
+import com.ibm.etcd.client.EtcdClient;
+import com.ibm.etcd.client.KeyUtils;
+import com.ibm.etcd.client.KvStoreClient;
+import com.ibm.etcd.client.kv.KvClient;
+import io.grpc.netty.shaded.io.netty.util.internal.StringUtil;
 import io.yottachain.p2phost.callbackserver.Server;
 import io.yottachain.p2phost.constants.MsgType;
 import io.yottachain.p2phost.core.P2pHost;
 import io.yottachain.p2phost.core.exception.P2pHostException;
-import io.yottachain.p2phost.core.interfaces.MsgCallback;
 import io.yottachain.p2phost.core.wrapper.P2pHostWrapper;
 import io.yottachain.p2phost.interfaces.BPNodeCallback;
 import io.yottachain.p2phost.interfaces.NodeCallback;
+import io.yottachain.p2phost.interfaces.P2pHostInterface;
 import io.yottachain.p2phost.interfaces.UserCallback;
+import io.yottachain.p2phost.pb.PbClient;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.logging.Logger;
 
 public class YottaP2P {
+    private static final Logger logger = Logger.getLogger(YottaP2P.class.getName());
+
+    private static final String P2PHOST_ETCD_PREFIX = "/p2phost/";
+    private static final String P2PHOST_PORT = P2PHOST_ETCD_PREFIX + "port";
+    private static final String P2PHOST_PRIVKEY = P2PHOST_ETCD_PREFIX + "privkey";
 
     private static Map<String, P2pHostWrapper.P2pHostLib.P2pHostCallback> callbackMap = new HashMap<String, P2pHostWrapper.P2pHostLib.P2pHostCallback>();
 
+    private static P2pHostInterface client;
+
+    private static AtomicBoolean flag = new AtomicBoolean(true);
+
     public static void start(int port, String privateKey) throws P2pHostException {
-        P2pHost.start(port, privateKey);
+        String embededStr = System.getenv("P2PHOST_EMBEDED");
+        if (!StringUtil.isNullOrEmpty(embededStr) && embededStr.equals("false")) {
+            logger.info("NodeMgmt is under standalone mode");
+            String etcdportStr = System.getenv("ETCDPORT");
+            int etcdport = 2379;
+            try {
+                etcdport = Integer.parseInt(etcdportStr);
+            } catch (Exception e) {}
+            logger.info("ETCD port is " + etcdport);
+            String etcdhostname = System.getenv("ETCDHOSTNAME");
+            if (StringUtil.isNullOrEmpty(etcdhostname)) {
+                etcdhostname = "etcd-svc";
+            }
+            logger.info("ETCD hostname is " + etcdhostname);
+            //1. 注册参数
+            KvStoreClient etcdClient = EtcdClient.forEndpoint(etcdhostname, etcdport).withPlainText().build();
+            final KvClient kvclient = etcdClient.getKvClient();
+            logger.info("Create connection to ETCD: " + etcdhostname + ":" + etcdport);
+            new Thread(() -> {
+                while (flag.get()) {
+                    try {
+                        RangeResponse p2pPrivkeyResp = kvclient.get(KeyUtils.bs(P2PHOST_PRIVKEY)).sync();
+                        String p2pPrivkeyNew = null;
+                        if (p2pPrivkeyResp.getKvsCount()>0) {
+                            p2pPrivkeyNew = p2pPrivkeyResp.getKvs(0).getValue().toStringUtf8();
+                            logger.info("Read P2P private key from ETCD: " + p2pPrivkeyNew);
+                        }
+                        if (StringUtil.isNullOrEmpty(p2pPrivkeyNew) || !privateKey.equals(p2pPrivkeyNew)) {
+                            kvclient.put(KeyUtils.bs(P2PHOST_PRIVKEY), KeyUtils.bs(privateKey)).sync();
+                            logger.info("Write P2P private key to ETCD: " + privateKey);
+                        }
+
+                        RangeResponse p2pPortResp = kvclient.get(KeyUtils.bs(P2PHOST_PORT)).sync();
+                        String p2pPortNew = null;
+                        if (p2pPortResp.getKvsCount()>0) {
+                            p2pPortNew = p2pPortResp.getKvs(0).getValue().toStringUtf8();
+                            logger.info("Read P2P port from ETCD: " + p2pPortNew);
+                        }
+                        if (StringUtil.isNullOrEmpty(p2pPortNew) || !Integer.toString(port).equals(p2pPortNew)) {
+                            kvclient.put(KeyUtils.bs(P2PHOST_PORT), KeyUtils.bs(Integer.toString(port))).sync();
+                            logger.info("Write P2P port to ETCD: " + port);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        Thread.sleep(60000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    etcdClient.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+            try {
+                Thread.sleep(6000);
+            } catch (InterruptedException e) {}
+            //2. 建立GRPC连接
+            String p2phostGRPCPortStr = System.getenv("P2PHOST_GRPCPORT");
+            int p2phostGRPCPort = 11002;
+            try {
+                p2phostGRPCPort = Integer.parseInt(p2phostGRPCPortStr);
+            } catch (Exception e) {}
+            String p2phostGRPCHostname = System.getenv("P2PHOST_GRPCHOSTNAME");
+            if (StringUtil.isNullOrEmpty(p2phostGRPCHostname)) {
+                p2phostGRPCHostname = "p2phost-svc";
+            }
+            client = new PbClient(p2phostGRPCHostname, p2phostGRPCPort);
+            logger.info("Create P2PHost GRPC connection: " + p2phostGRPCHostname + ":" + p2phostGRPCPort);
+        } else {
+            logger.info("NodeMgmt is under embeded mode");
+            client = new P2pHost(port, privateKey);
+        }
     }
 
     public static void close() throws P2pHostException {
-        P2pHost.close();
+        client.close();
     }
 
     public static String id() throws P2pHostException {
-        return P2pHost.id();
+        return client.id();
     }
 
     public static String[] addrs() throws P2pHostException {
-        return P2pHost.addrs();
+        return client.addrs();
     }
 
     public static void connect(String nodeId, String[] addrs) throws P2pHostException {
-        P2pHost.connect(nodeId, addrs);
+        client.connect(nodeId, addrs);
     }
 
     public static void disconnect(String nodeId) throws P2pHostException {
-        P2pHost.disconnect(nodeId);
+        client.disconnect(nodeId);
     }
 
     public static byte[] sendToBPUMsg(String nodeId, byte[] msg) throws P2pHostException {
-        return P2pHost.sendMsg(nodeId, MsgType.USER_MSG, msg);
+        return client.sendMsg(nodeId, MsgType.USER_MSG, msg);
     }
 
     public static byte[] sendToBPMsg(String nodeId, byte[] msg) throws P2pHostException {
-        return P2pHost.sendMsg(nodeId, MsgType.BPNODE_MSG, msg);
+        return client.sendMsg(nodeId, MsgType.BPNODE_MSG, msg);
     }
 
     public static byte[] sendToNodeMsg(String nodeId, byte[] msg) throws P2pHostException {
-        return P2pHost.sendMsg(nodeId, MsgType.NODE_MSG, msg);
+        return client.sendMsg(nodeId, MsgType.NODE_MSG, msg);
     }
 
     public static void registerUserCallback(UserCallback userCallback) {
@@ -80,7 +172,7 @@ public class YottaP2P {
                     return userCallback.onMessageFromUser(data, pubkey);
                 }
             });
-            P2pHost.registerHandler(userCallback.type(), null);
+            client.registerHandler(userCallback.type(), null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -110,7 +202,7 @@ public class YottaP2P {
                     return bpNodeCallback.onMessageFromBPNode(data, pubkey);
                 }
             });
-            P2pHost.registerHandler(bpNodeCallback.type(), null);
+            client.registerHandler(bpNodeCallback.type(), null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -140,7 +232,7 @@ public class YottaP2P {
                     return nodeCallback.onMessageFromNode(data, pubkey);
                 }
             });
-            P2pHost.registerHandler(nodeCallback.type(), null);
+            client.registerHandler(nodeCallback.type(), null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
