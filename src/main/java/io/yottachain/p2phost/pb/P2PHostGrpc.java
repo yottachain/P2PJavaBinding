@@ -30,29 +30,29 @@ public final class P2PHostGrpc {
   public static final String SERVICE_NAME = "pb.P2PHost";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty,
-      io.yottachain.p2phost.pb.StringMsg> getIDMethod;
+  private static volatile io.grpc.MethodDescriptor<Empty,
+      StringMsg> getIDMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "ID",
-      requestType = io.yottachain.p2phost.pb.Empty.class,
-      responseType = io.yottachain.p2phost.pb.StringMsg.class,
+      requestType = Empty.class,
+      responseType = StringMsg.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty,
-      io.yottachain.p2phost.pb.StringMsg> getIDMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty, io.yottachain.p2phost.pb.StringMsg> getIDMethod;
+  public static io.grpc.MethodDescriptor<Empty,
+      StringMsg> getIDMethod() {
+    io.grpc.MethodDescriptor<Empty, StringMsg> getIDMethod;
     if ((getIDMethod = P2PHostGrpc.getIDMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getIDMethod = P2PHostGrpc.getIDMethod) == null) {
           P2PHostGrpc.getIDMethod = getIDMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.Empty, io.yottachain.p2phost.pb.StringMsg>newBuilder()
+              io.grpc.MethodDescriptor.<Empty, StringMsg>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ID"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.StringMsg.getDefaultInstance()))
+                  StringMsg.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("ID"))
               .build();
         }
@@ -61,29 +61,29 @@ public final class P2PHostGrpc {
     return getIDMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty,
-      io.yottachain.p2phost.pb.StringListMsg> getAddrsMethod;
+  private static volatile io.grpc.MethodDescriptor<Empty,
+      StringListMsg> getAddrsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Addrs",
-      requestType = io.yottachain.p2phost.pb.Empty.class,
-      responseType = io.yottachain.p2phost.pb.StringListMsg.class,
+      requestType = Empty.class,
+      responseType = StringListMsg.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty,
-      io.yottachain.p2phost.pb.StringListMsg> getAddrsMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty, io.yottachain.p2phost.pb.StringListMsg> getAddrsMethod;
+  public static io.grpc.MethodDescriptor<Empty,
+      StringListMsg> getAddrsMethod() {
+    io.grpc.MethodDescriptor<Empty, StringListMsg> getAddrsMethod;
     if ((getAddrsMethod = P2PHostGrpc.getAddrsMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getAddrsMethod = P2PHostGrpc.getAddrsMethod) == null) {
           P2PHostGrpc.getAddrsMethod = getAddrsMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.Empty, io.yottachain.p2phost.pb.StringListMsg>newBuilder()
+              io.grpc.MethodDescriptor.<Empty, StringListMsg>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Addrs"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.StringListMsg.getDefaultInstance()))
+                  StringListMsg.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("Addrs"))
               .build();
         }
@@ -92,29 +92,29 @@ public final class P2PHostGrpc {
     return getAddrsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.ConnectReq,
-      io.yottachain.p2phost.pb.Empty> getConnectMethod;
+  private static volatile io.grpc.MethodDescriptor<ConnectReq,
+      Empty> getConnectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Connect",
-      requestType = io.yottachain.p2phost.pb.ConnectReq.class,
-      responseType = io.yottachain.p2phost.pb.Empty.class,
+      requestType = ConnectReq.class,
+      responseType = Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.ConnectReq,
-      io.yottachain.p2phost.pb.Empty> getConnectMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.ConnectReq, io.yottachain.p2phost.pb.Empty> getConnectMethod;
+  public static io.grpc.MethodDescriptor<ConnectReq,
+      Empty> getConnectMethod() {
+    io.grpc.MethodDescriptor<ConnectReq, Empty> getConnectMethod;
     if ((getConnectMethod = P2PHostGrpc.getConnectMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getConnectMethod = P2PHostGrpc.getConnectMethod) == null) {
           P2PHostGrpc.getConnectMethod = getConnectMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.ConnectReq, io.yottachain.p2phost.pb.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<ConnectReq, Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Connect"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.ConnectReq.getDefaultInstance()))
+                  ConnectReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("Connect"))
               .build();
         }
@@ -123,29 +123,29 @@ public final class P2PHostGrpc {
     return getConnectMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg,
-      io.yottachain.p2phost.pb.Empty> getDisConnectMethod;
+  private static volatile io.grpc.MethodDescriptor<StringMsg,
+      Empty> getDisConnectMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DisConnect",
-      requestType = io.yottachain.p2phost.pb.StringMsg.class,
-      responseType = io.yottachain.p2phost.pb.Empty.class,
+      requestType = StringMsg.class,
+      responseType = Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg,
-      io.yottachain.p2phost.pb.Empty> getDisConnectMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg, io.yottachain.p2phost.pb.Empty> getDisConnectMethod;
+  public static io.grpc.MethodDescriptor<StringMsg,
+      Empty> getDisConnectMethod() {
+    io.grpc.MethodDescriptor<StringMsg, Empty> getDisConnectMethod;
     if ((getDisConnectMethod = P2PHostGrpc.getDisConnectMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getDisConnectMethod = P2PHostGrpc.getDisConnectMethod) == null) {
           P2PHostGrpc.getDisConnectMethod = getDisConnectMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.StringMsg, io.yottachain.p2phost.pb.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<StringMsg, Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DisConnect"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.StringMsg.getDefaultInstance()))
+                  StringMsg.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("DisConnect"))
               .build();
         }
@@ -154,29 +154,29 @@ public final class P2PHostGrpc {
     return getDisConnectMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.SendMsgReq,
-      io.yottachain.p2phost.pb.SendMsgResp> getSendMsgMethod;
+  private static volatile io.grpc.MethodDescriptor<SendMsgReq,
+      SendMsgResp> getSendMsgMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SendMsg",
-      requestType = io.yottachain.p2phost.pb.SendMsgReq.class,
-      responseType = io.yottachain.p2phost.pb.SendMsgResp.class,
+      requestType = SendMsgReq.class,
+      responseType = SendMsgResp.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.SendMsgReq,
-      io.yottachain.p2phost.pb.SendMsgResp> getSendMsgMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.SendMsgReq, io.yottachain.p2phost.pb.SendMsgResp> getSendMsgMethod;
+  public static io.grpc.MethodDescriptor<SendMsgReq,
+      SendMsgResp> getSendMsgMethod() {
+    io.grpc.MethodDescriptor<SendMsgReq, SendMsgResp> getSendMsgMethod;
     if ((getSendMsgMethod = P2PHostGrpc.getSendMsgMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getSendMsgMethod = P2PHostGrpc.getSendMsgMethod) == null) {
           P2PHostGrpc.getSendMsgMethod = getSendMsgMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.SendMsgReq, io.yottachain.p2phost.pb.SendMsgResp>newBuilder()
+              io.grpc.MethodDescriptor.<SendMsgReq, SendMsgResp>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SendMsg"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.SendMsgReq.getDefaultInstance()))
+                  SendMsgReq.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.SendMsgResp.getDefaultInstance()))
+                  SendMsgResp.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("SendMsg"))
               .build();
         }
@@ -185,29 +185,29 @@ public final class P2PHostGrpc {
     return getSendMsgMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg,
-      io.yottachain.p2phost.pb.Empty> getRegisterHandlerMethod;
+  private static volatile io.grpc.MethodDescriptor<StringMsg,
+      Empty> getRegisterHandlerMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "RegisterHandler",
-      requestType = io.yottachain.p2phost.pb.StringMsg.class,
-      responseType = io.yottachain.p2phost.pb.Empty.class,
+      requestType = StringMsg.class,
+      responseType = Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg,
-      io.yottachain.p2phost.pb.Empty> getRegisterHandlerMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg, io.yottachain.p2phost.pb.Empty> getRegisterHandlerMethod;
+  public static io.grpc.MethodDescriptor<StringMsg,
+      Empty> getRegisterHandlerMethod() {
+    io.grpc.MethodDescriptor<StringMsg, Empty> getRegisterHandlerMethod;
     if ((getRegisterHandlerMethod = P2PHostGrpc.getRegisterHandlerMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getRegisterHandlerMethod = P2PHostGrpc.getRegisterHandlerMethod) == null) {
           P2PHostGrpc.getRegisterHandlerMethod = getRegisterHandlerMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.StringMsg, io.yottachain.p2phost.pb.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<StringMsg, Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RegisterHandler"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.StringMsg.getDefaultInstance()))
+                  StringMsg.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("RegisterHandler"))
               .build();
         }
@@ -216,29 +216,29 @@ public final class P2PHostGrpc {
     return getRegisterHandlerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg,
-      io.yottachain.p2phost.pb.Empty> getUnregisterHandlerMethod;
+  private static volatile io.grpc.MethodDescriptor<StringMsg,
+      Empty> getUnregisterHandlerMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "UnregisterHandler",
-      requestType = io.yottachain.p2phost.pb.StringMsg.class,
-      responseType = io.yottachain.p2phost.pb.Empty.class,
+      requestType = StringMsg.class,
+      responseType = Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg,
-      io.yottachain.p2phost.pb.Empty> getUnregisterHandlerMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.StringMsg, io.yottachain.p2phost.pb.Empty> getUnregisterHandlerMethod;
+  public static io.grpc.MethodDescriptor<StringMsg,
+      Empty> getUnregisterHandlerMethod() {
+    io.grpc.MethodDescriptor<StringMsg, Empty> getUnregisterHandlerMethod;
     if ((getUnregisterHandlerMethod = P2PHostGrpc.getUnregisterHandlerMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getUnregisterHandlerMethod = P2PHostGrpc.getUnregisterHandlerMethod) == null) {
           P2PHostGrpc.getUnregisterHandlerMethod = getUnregisterHandlerMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.StringMsg, io.yottachain.p2phost.pb.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<StringMsg, Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UnregisterHandler"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.StringMsg.getDefaultInstance()))
+                  StringMsg.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("UnregisterHandler"))
               .build();
         }
@@ -247,29 +247,29 @@ public final class P2PHostGrpc {
     return getUnregisterHandlerMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty,
-      io.yottachain.p2phost.pb.Empty> getCloseMethod;
+  private static volatile io.grpc.MethodDescriptor<Empty,
+      Empty> getCloseMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Close",
-      requestType = io.yottachain.p2phost.pb.Empty.class,
-      responseType = io.yottachain.p2phost.pb.Empty.class,
+      requestType = Empty.class,
+      responseType = Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty,
-      io.yottachain.p2phost.pb.Empty> getCloseMethod() {
-    io.grpc.MethodDescriptor<io.yottachain.p2phost.pb.Empty, io.yottachain.p2phost.pb.Empty> getCloseMethod;
+  public static io.grpc.MethodDescriptor<Empty,
+      Empty> getCloseMethod() {
+    io.grpc.MethodDescriptor<Empty, Empty> getCloseMethod;
     if ((getCloseMethod = P2PHostGrpc.getCloseMethod) == null) {
       synchronized (P2PHostGrpc.class) {
         if ((getCloseMethod = P2PHostGrpc.getCloseMethod) == null) {
           P2PHostGrpc.getCloseMethod = getCloseMethod =
-              io.grpc.MethodDescriptor.<io.yottachain.p2phost.pb.Empty, io.yottachain.p2phost.pb.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<Empty, Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Close"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.yottachain.p2phost.pb.Empty.getDefaultInstance()))
+                  Empty.getDefaultInstance()))
               .setSchemaDescriptor(new P2PHostMethodDescriptorSupplier("Close"))
               .build();
         }
@@ -310,117 +310,117 @@ public final class P2PHostGrpc {
 
     /**
      */
-    public void iD(io.yottachain.p2phost.pb.Empty request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.StringMsg> responseObserver) {
+    public void iD(Empty request,
+                   io.grpc.stub.StreamObserver<StringMsg> responseObserver) {
       asyncUnimplementedUnaryCall(getIDMethod(), responseObserver);
     }
 
     /**
      */
-    public void addrs(io.yottachain.p2phost.pb.Empty request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.StringListMsg> responseObserver) {
+    public void addrs(Empty request,
+                      io.grpc.stub.StreamObserver<StringListMsg> responseObserver) {
       asyncUnimplementedUnaryCall(getAddrsMethod(), responseObserver);
     }
 
     /**
      */
-    public void connect(io.yottachain.p2phost.pb.ConnectReq request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void connect(ConnectReq request,
+                        io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getConnectMethod(), responseObserver);
     }
 
     /**
      */
-    public void disConnect(io.yottachain.p2phost.pb.StringMsg request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void disConnect(StringMsg request,
+                           io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getDisConnectMethod(), responseObserver);
     }
 
     /**
      */
-    public void sendMsg(io.yottachain.p2phost.pb.SendMsgReq request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.SendMsgResp> responseObserver) {
+    public void sendMsg(SendMsgReq request,
+                        io.grpc.stub.StreamObserver<SendMsgResp> responseObserver) {
       asyncUnimplementedUnaryCall(getSendMsgMethod(), responseObserver);
     }
 
     /**
      */
-    public void registerHandler(io.yottachain.p2phost.pb.StringMsg request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void registerHandler(StringMsg request,
+                                io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getRegisterHandlerMethod(), responseObserver);
     }
 
     /**
      */
-    public void unregisterHandler(io.yottachain.p2phost.pb.StringMsg request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void unregisterHandler(StringMsg request,
+                                  io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getUnregisterHandlerMethod(), responseObserver);
     }
 
     /**
      */
-    public void close(io.yottachain.p2phost.pb.Empty request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void close(Empty request,
+                      io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getCloseMethod(), responseObserver);
     }
 
-    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
+    @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getIDMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.Empty,
-                io.yottachain.p2phost.pb.StringMsg>(
+                Empty,
+                StringMsg>(
                   this, METHODID_ID)))
           .addMethod(
             getAddrsMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.Empty,
-                io.yottachain.p2phost.pb.StringListMsg>(
+                Empty,
+                StringListMsg>(
                   this, METHODID_ADDRS)))
           .addMethod(
             getConnectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.ConnectReq,
-                io.yottachain.p2phost.pb.Empty>(
+                ConnectReq,
+                Empty>(
                   this, METHODID_CONNECT)))
           .addMethod(
             getDisConnectMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.StringMsg,
-                io.yottachain.p2phost.pb.Empty>(
+                StringMsg,
+                Empty>(
                   this, METHODID_DIS_CONNECT)))
           .addMethod(
             getSendMsgMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.SendMsgReq,
-                io.yottachain.p2phost.pb.SendMsgResp>(
+                SendMsgReq,
+                SendMsgResp>(
                   this, METHODID_SEND_MSG)))
           .addMethod(
             getRegisterHandlerMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.StringMsg,
-                io.yottachain.p2phost.pb.Empty>(
+                StringMsg,
+                Empty>(
                   this, METHODID_REGISTER_HANDLER)))
           .addMethod(
             getUnregisterHandlerMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.StringMsg,
-                io.yottachain.p2phost.pb.Empty>(
+                StringMsg,
+                Empty>(
                   this, METHODID_UNREGISTER_HANDLER)))
           .addMethod(
             getCloseMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.yottachain.p2phost.pb.Empty,
-                io.yottachain.p2phost.pb.Empty>(
+                Empty,
+                Empty>(
                   this, METHODID_CLOSE)))
           .build();
     }
@@ -441,7 +441,7 @@ public final class P2PHostGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected P2PHostStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new P2PHostStub(channel, callOptions);
@@ -449,64 +449,64 @@ public final class P2PHostGrpc {
 
     /**
      */
-    public void iD(io.yottachain.p2phost.pb.Empty request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.StringMsg> responseObserver) {
+    public void iD(Empty request,
+                   io.grpc.stub.StreamObserver<StringMsg> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getIDMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void addrs(io.yottachain.p2phost.pb.Empty request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.StringListMsg> responseObserver) {
+    public void addrs(Empty request,
+                      io.grpc.stub.StreamObserver<StringListMsg> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getAddrsMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void connect(io.yottachain.p2phost.pb.ConnectReq request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void connect(ConnectReq request,
+                        io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getConnectMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void disConnect(io.yottachain.p2phost.pb.StringMsg request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void disConnect(StringMsg request,
+                           io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDisConnectMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void sendMsg(io.yottachain.p2phost.pb.SendMsgReq request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.SendMsgResp> responseObserver) {
+    public void sendMsg(SendMsgReq request,
+                        io.grpc.stub.StreamObserver<SendMsgResp> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getSendMsgMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void registerHandler(io.yottachain.p2phost.pb.StringMsg request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void registerHandler(StringMsg request,
+                                io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRegisterHandlerMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void unregisterHandler(io.yottachain.p2phost.pb.StringMsg request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void unregisterHandler(StringMsg request,
+                                  io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getUnregisterHandlerMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void close(io.yottachain.p2phost.pb.Empty request,
-        io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty> responseObserver) {
+    public void close(Empty request,
+                      io.grpc.stub.StreamObserver<Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCloseMethod(), getCallOptions()), request, responseObserver);
     }
@@ -527,7 +527,7 @@ public final class P2PHostGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected P2PHostBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new P2PHostBlockingStub(channel, callOptions);
@@ -535,56 +535,56 @@ public final class P2PHostGrpc {
 
     /**
      */
-    public io.yottachain.p2phost.pb.StringMsg iD(io.yottachain.p2phost.pb.Empty request) {
+    public StringMsg iD(Empty request) {
       return blockingUnaryCall(
           getChannel(), getIDMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.StringListMsg addrs(io.yottachain.p2phost.pb.Empty request) {
+    public StringListMsg addrs(Empty request) {
       return blockingUnaryCall(
           getChannel(), getAddrsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.Empty connect(io.yottachain.p2phost.pb.ConnectReq request) {
+    public Empty connect(ConnectReq request) {
       return blockingUnaryCall(
           getChannel(), getConnectMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.Empty disConnect(io.yottachain.p2phost.pb.StringMsg request) {
+    public Empty disConnect(StringMsg request) {
       return blockingUnaryCall(
           getChannel(), getDisConnectMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.SendMsgResp sendMsg(io.yottachain.p2phost.pb.SendMsgReq request) {
+    public SendMsgResp sendMsg(SendMsgReq request) {
       return blockingUnaryCall(
           getChannel(), getSendMsgMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.Empty registerHandler(io.yottachain.p2phost.pb.StringMsg request) {
+    public Empty registerHandler(StringMsg request) {
       return blockingUnaryCall(
           getChannel(), getRegisterHandlerMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.Empty unregisterHandler(io.yottachain.p2phost.pb.StringMsg request) {
+    public Empty unregisterHandler(StringMsg request) {
       return blockingUnaryCall(
           getChannel(), getUnregisterHandlerMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.yottachain.p2phost.pb.Empty close(io.yottachain.p2phost.pb.Empty request) {
+    public Empty close(Empty request) {
       return blockingUnaryCall(
           getChannel(), getCloseMethod(), getCallOptions(), request);
     }
@@ -605,7 +605,7 @@ public final class P2PHostGrpc {
       super(channel, callOptions);
     }
 
-    @java.lang.Override
+    @Override
     protected P2PHostFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new P2PHostFutureStub(channel, callOptions);
@@ -613,64 +613,64 @@ public final class P2PHostGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.StringMsg> iD(
-        io.yottachain.p2phost.pb.Empty request) {
+    public com.google.common.util.concurrent.ListenableFuture<StringMsg> iD(
+        Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getIDMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.StringListMsg> addrs(
-        io.yottachain.p2phost.pb.Empty request) {
+    public com.google.common.util.concurrent.ListenableFuture<StringListMsg> addrs(
+        Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getAddrsMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.Empty> connect(
-        io.yottachain.p2phost.pb.ConnectReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<Empty> connect(
+        ConnectReq request) {
       return futureUnaryCall(
           getChannel().newCall(getConnectMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.Empty> disConnect(
-        io.yottachain.p2phost.pb.StringMsg request) {
+    public com.google.common.util.concurrent.ListenableFuture<Empty> disConnect(
+        StringMsg request) {
       return futureUnaryCall(
           getChannel().newCall(getDisConnectMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.SendMsgResp> sendMsg(
-        io.yottachain.p2phost.pb.SendMsgReq request) {
+    public com.google.common.util.concurrent.ListenableFuture<SendMsgResp> sendMsg(
+        SendMsgReq request) {
       return futureUnaryCall(
           getChannel().newCall(getSendMsgMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.Empty> registerHandler(
-        io.yottachain.p2phost.pb.StringMsg request) {
+    public com.google.common.util.concurrent.ListenableFuture<Empty> registerHandler(
+        StringMsg request) {
       return futureUnaryCall(
           getChannel().newCall(getRegisterHandlerMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.Empty> unregisterHandler(
-        io.yottachain.p2phost.pb.StringMsg request) {
+    public com.google.common.util.concurrent.ListenableFuture<Empty> unregisterHandler(
+        StringMsg request) {
       return futureUnaryCall(
           getChannel().newCall(getUnregisterHandlerMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.yottachain.p2phost.pb.Empty> close(
-        io.yottachain.p2phost.pb.Empty request) {
+    public com.google.common.util.concurrent.ListenableFuture<Empty> close(
+        Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getCloseMethod(), getCallOptions()), request);
     }
@@ -698,49 +698,49 @@ public final class P2PHostGrpc {
       this.methodId = methodId;
     }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_ID:
-          serviceImpl.iD((io.yottachain.p2phost.pb.Empty) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.StringMsg>) responseObserver);
+          serviceImpl.iD((Empty) request,
+              (io.grpc.stub.StreamObserver<StringMsg>) responseObserver);
           break;
         case METHODID_ADDRS:
-          serviceImpl.addrs((io.yottachain.p2phost.pb.Empty) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.StringListMsg>) responseObserver);
+          serviceImpl.addrs((Empty) request,
+              (io.grpc.stub.StreamObserver<StringListMsg>) responseObserver);
           break;
         case METHODID_CONNECT:
-          serviceImpl.connect((io.yottachain.p2phost.pb.ConnectReq) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty>) responseObserver);
+          serviceImpl.connect((ConnectReq) request,
+              (io.grpc.stub.StreamObserver<Empty>) responseObserver);
           break;
         case METHODID_DIS_CONNECT:
-          serviceImpl.disConnect((io.yottachain.p2phost.pb.StringMsg) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty>) responseObserver);
+          serviceImpl.disConnect((StringMsg) request,
+              (io.grpc.stub.StreamObserver<Empty>) responseObserver);
           break;
         case METHODID_SEND_MSG:
-          serviceImpl.sendMsg((io.yottachain.p2phost.pb.SendMsgReq) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.SendMsgResp>) responseObserver);
+          serviceImpl.sendMsg((SendMsgReq) request,
+              (io.grpc.stub.StreamObserver<SendMsgResp>) responseObserver);
           break;
         case METHODID_REGISTER_HANDLER:
-          serviceImpl.registerHandler((io.yottachain.p2phost.pb.StringMsg) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty>) responseObserver);
+          serviceImpl.registerHandler((StringMsg) request,
+              (io.grpc.stub.StreamObserver<Empty>) responseObserver);
           break;
         case METHODID_UNREGISTER_HANDLER:
-          serviceImpl.unregisterHandler((io.yottachain.p2phost.pb.StringMsg) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty>) responseObserver);
+          serviceImpl.unregisterHandler((StringMsg) request,
+              (io.grpc.stub.StreamObserver<Empty>) responseObserver);
           break;
         case METHODID_CLOSE:
-          serviceImpl.close((io.yottachain.p2phost.pb.Empty) request,
-              (io.grpc.stub.StreamObserver<io.yottachain.p2phost.pb.Empty>) responseObserver);
+          serviceImpl.close((Empty) request,
+              (io.grpc.stub.StreamObserver<Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
       }
     }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -754,12 +754,12 @@ public final class P2PHostGrpc {
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     P2PHostBaseDescriptorSupplier() {}
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return io.yottachain.p2phost.pb.P2PHostProto.getDescriptor();
+      return P2PHostProto.getDescriptor();
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("P2PHost");
     }
@@ -779,7 +779,7 @@ public final class P2PHostGrpc {
       this.methodName = methodName;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }

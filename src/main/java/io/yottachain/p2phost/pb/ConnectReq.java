@@ -24,14 +24,14 @@ private static final long serialVersionUID = 0L;
     addrs_ = com.google.protobuf.LazyStringArrayList.EMPTY;
   }
 
-  @java.lang.Override
+  @Override
   @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
+  protected Object newInstance(
       UnusedPrivateParameter unused) {
     return new ConnectReq();
   }
 
-  @java.lang.Override
+  @Override
   public final com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
@@ -42,7 +42,7 @@ private static final long serialVersionUID = 0L;
       throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+      throw new NullPointerException();
     }
     int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -56,13 +56,13 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            String s = input.readStringRequireUtf8();
 
             id_ = s;
             break;
           }
           case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
+            String s = input.readStringRequireUtf8();
             if (!((mutable_bitField0_ & 0x00000001) != 0)) {
               addrs_ = new com.google.protobuf.LazyStringArrayList();
               mutable_bitField0_ |= 0x00000001;
@@ -94,30 +94,30 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return io.yottachain.p2phost.pb.P2PHostProto.internal_static_pb_ConnectReq_descriptor;
+    return P2PHostProto.internal_static_pb_ConnectReq_descriptor;
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+  @Override
+  protected FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return io.yottachain.p2phost.pb.P2PHostProto.internal_static_pb_ConnectReq_fieldAccessorTable
+    return P2PHostProto.internal_static_pb_ConnectReq_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            io.yottachain.p2phost.pb.ConnectReq.class, io.yottachain.p2phost.pb.ConnectReq.Builder.class);
+            ConnectReq.class, Builder.class);
   }
 
   public static final int ID_FIELD_NUMBER = 1;
-  private volatile java.lang.Object id_;
+  private volatile Object id_;
   /**
    * <code>string id = 1;</code>
    */
-  public java.lang.String getId() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
+  public String getId() {
+    Object ref = id_;
+    if (ref instanceof String) {
+      return (String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+      String s = bs.toStringUtf8();
       id_ = s;
       return s;
     }
@@ -127,11 +127,11 @@ private static final long serialVersionUID = 0L;
    */
   public com.google.protobuf.ByteString
       getIdBytes() {
-    java.lang.Object ref = id_;
-    if (ref instanceof java.lang.String) {
+    Object ref = id_;
+    if (ref instanceof String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
+              (String) ref);
       id_ = b;
       return b;
     } else {
@@ -157,7 +157,7 @@ private static final long serialVersionUID = 0L;
   /**
    * <code>repeated string addrs = 2;</code>
    */
-  public java.lang.String getAddrs(int index) {
+  public String getAddrs(int index) {
     return addrs_.get(index);
   }
   /**
@@ -169,7 +169,7 @@ private static final long serialVersionUID = 0L;
   }
 
   private byte memoizedIsInitialized = -1;
-  @java.lang.Override
+  @Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
     if (isInitialized == 1) return true;
@@ -179,7 +179,7 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (!getIdBytes().isEmpty()) {
@@ -191,7 +191,7 @@ private static final long serialVersionUID = 0L;
     unknownFields.writeTo(output);
   }
 
-  @java.lang.Override
+  @Override
   public int getSerializedSize() {
     int size = memoizedSize;
     if (size != -1) return size;
@@ -213,15 +213,15 @@ private static final long serialVersionUID = 0L;
     return size;
   }
 
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
+  @Override
+  public boolean equals(final Object obj) {
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof io.yottachain.p2phost.pb.ConnectReq)) {
+    if (!(obj instanceof ConnectReq)) {
       return super.equals(obj);
     }
-    io.yottachain.p2phost.pb.ConnectReq other = (io.yottachain.p2phost.pb.ConnectReq) obj;
+    ConnectReq other = (ConnectReq) obj;
 
     if (!getId()
         .equals(other.getId())) return false;
@@ -231,7 +231,7 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
-  @java.lang.Override
+  @Override
   public int hashCode() {
     if (memoizedHashCode != 0) {
       return memoizedHashCode;
@@ -249,69 +249,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(byte[] data)
+  public static ConnectReq parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(java.io.InputStream input)
+  public static ConnectReq parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseDelimitedFrom(java.io.InputStream input)
+  public static ConnectReq parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseDelimitedFrom(
+  public static ConnectReq parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static io.yottachain.p2phost.pb.ConnectReq parseFrom(
+  public static ConnectReq parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -319,23 +319,23 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
+  @Override
   public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(io.yottachain.p2phost.pb.ConnectReq prototype) {
+  public static Builder newBuilder(ConnectReq prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-  @java.lang.Override
+  @Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
         ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
+  @Override
   protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -349,18 +349,18 @@ private static final long serialVersionUID = 0L;
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:pb.ConnectReq)
-      io.yottachain.p2phost.pb.ConnectReqOrBuilder {
+      ConnectReqOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return io.yottachain.p2phost.pb.P2PHostProto.internal_static_pb_ConnectReq_descriptor;
+      return P2PHostProto.internal_static_pb_ConnectReq_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    @Override
+    protected FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return io.yottachain.p2phost.pb.P2PHostProto.internal_static_pb_ConnectReq_fieldAccessorTable
+      return P2PHostProto.internal_static_pb_ConnectReq_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              io.yottachain.p2phost.pb.ConnectReq.class, io.yottachain.p2phost.pb.ConnectReq.Builder.class);
+              ConnectReq.class, Builder.class);
     }
 
     // Construct using io.yottachain.p2phost.pb.ConnectReq.newBuilder()
@@ -369,7 +369,7 @@ private static final long serialVersionUID = 0L;
     }
 
     private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
@@ -378,7 +378,7 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
       }
     }
-    @java.lang.Override
+    @Override
     public Builder clear() {
       super.clear();
       id_ = "";
@@ -388,29 +388,29 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return io.yottachain.p2phost.pb.P2PHostProto.internal_static_pb_ConnectReq_descriptor;
+      return P2PHostProto.internal_static_pb_ConnectReq_descriptor;
     }
 
-    @java.lang.Override
-    public io.yottachain.p2phost.pb.ConnectReq getDefaultInstanceForType() {
-      return io.yottachain.p2phost.pb.ConnectReq.getDefaultInstance();
+    @Override
+    public ConnectReq getDefaultInstanceForType() {
+      return ConnectReq.getDefaultInstance();
     }
 
-    @java.lang.Override
-    public io.yottachain.p2phost.pb.ConnectReq build() {
-      io.yottachain.p2phost.pb.ConnectReq result = buildPartial();
+    @Override
+    public ConnectReq build() {
+      ConnectReq result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
     }
 
-    @java.lang.Override
-    public io.yottachain.p2phost.pb.ConnectReq buildPartial() {
-      io.yottachain.p2phost.pb.ConnectReq result = new io.yottachain.p2phost.pb.ConnectReq(this);
+    @Override
+    public ConnectReq buildPartial() {
+      ConnectReq result = new ConnectReq(this);
       int from_bitField0_ = bitField0_;
       result.id_ = id_;
       if (((bitField0_ & 0x00000001) != 0)) {
@@ -422,50 +422,50 @@ private static final long serialVersionUID = 0L;
       return result;
     }
 
-    @java.lang.Override
+    @Override
     public Builder clone() {
       return super.clone();
     }
-    @java.lang.Override
+    @Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return super.setField(field, value);
     }
-    @java.lang.Override
+    @Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
-    @java.lang.Override
+    @Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
-    @java.lang.Override
+    @Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
+        int index, Object value) {
       return super.setRepeatedField(field, index, value);
     }
-    @java.lang.Override
+    @Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
+        Object value) {
       return super.addRepeatedField(field, value);
     }
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof io.yottachain.p2phost.pb.ConnectReq) {
-        return mergeFrom((io.yottachain.p2phost.pb.ConnectReq)other);
+      if (other instanceof ConnectReq) {
+        return mergeFrom((ConnectReq)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(io.yottachain.p2phost.pb.ConnectReq other) {
-      if (other == io.yottachain.p2phost.pb.ConnectReq.getDefaultInstance()) return this;
+    public Builder mergeFrom(ConnectReq other) {
+      if (other == ConnectReq.getDefaultInstance()) return this;
       if (!other.getId().isEmpty()) {
         id_ = other.id_;
         onChanged();
@@ -485,21 +485,21 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    @java.lang.Override
+    @Override
     public final boolean isInitialized() {
       return true;
     }
 
-    @java.lang.Override
+    @Override
     public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      io.yottachain.p2phost.pb.ConnectReq parsedMessage = null;
+      ConnectReq parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (io.yottachain.p2phost.pb.ConnectReq) e.getUnfinishedMessage();
+        parsedMessage = (ConnectReq) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -510,20 +510,20 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object id_ = "";
+    private Object id_ = "";
     /**
      * <code>string id = 1;</code>
      */
-    public java.lang.String getId() {
-      java.lang.Object ref = id_;
-      if (!(ref instanceof java.lang.String)) {
+    public String getId() {
+      Object ref = id_;
+      if (!(ref instanceof String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
+        String s = bs.toStringUtf8();
         id_ = s;
         return s;
       } else {
-        return (java.lang.String) ref;
+        return (String) ref;
       }
     }
     /**
@@ -531,11 +531,11 @@ private static final long serialVersionUID = 0L;
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
-      java.lang.Object ref = id_;
+      Object ref = id_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+                (String) ref);
         id_ = b;
         return b;
       } else {
@@ -546,7 +546,7 @@ private static final long serialVersionUID = 0L;
      * <code>string id = 1;</code>
      */
     public Builder setId(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -602,7 +602,7 @@ private static final long serialVersionUID = 0L;
     /**
      * <code>repeated string addrs = 2;</code>
      */
-    public java.lang.String getAddrs(int index) {
+    public String getAddrs(int index) {
       return addrs_.get(index);
     }
     /**
@@ -616,7 +616,7 @@ private static final long serialVersionUID = 0L;
      * <code>repeated string addrs = 2;</code>
      */
     public Builder setAddrs(
-        int index, java.lang.String value) {
+        int index, String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -629,7 +629,7 @@ private static final long serialVersionUID = 0L;
      * <code>repeated string addrs = 2;</code>
      */
     public Builder addAddrs(
-        java.lang.String value) {
+        String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -642,7 +642,7 @@ private static final long serialVersionUID = 0L;
      * <code>repeated string addrs = 2;</code>
      */
     public Builder addAllAddrs(
-        java.lang.Iterable<java.lang.String> values) {
+        Iterable<String> values) {
       ensureAddrsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
           values, addrs_);
@@ -672,13 +672,13 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-    @java.lang.Override
+    @Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
-    @java.lang.Override
+    @Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
@@ -689,18 +689,18 @@ private static final long serialVersionUID = 0L;
   }
 
   // @@protoc_insertion_point(class_scope:pb.ConnectReq)
-  private static final io.yottachain.p2phost.pb.ConnectReq DEFAULT_INSTANCE;
+  private static final ConnectReq DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new io.yottachain.p2phost.pb.ConnectReq();
+    DEFAULT_INSTANCE = new ConnectReq();
   }
 
-  public static io.yottachain.p2phost.pb.ConnectReq getDefaultInstance() {
+  public static ConnectReq getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   private static final com.google.protobuf.Parser<ConnectReq>
       PARSER = new com.google.protobuf.AbstractParser<ConnectReq>() {
-    @java.lang.Override
+    @Override
     public ConnectReq parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -713,13 +713,13 @@ private static final long serialVersionUID = 0L;
     return PARSER;
   }
 
-  @java.lang.Override
+  @Override
   public com.google.protobuf.Parser<ConnectReq> getParserForType() {
     return PARSER;
   }
 
-  @java.lang.Override
-  public io.yottachain.p2phost.pb.ConnectReq getDefaultInstanceForType() {
+  @Override
+  public ConnectReq getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

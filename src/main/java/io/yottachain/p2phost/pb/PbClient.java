@@ -77,11 +77,11 @@ public class PbClient implements P2pHostInterface {
     }
 
     @Override
-    public byte[] sendMsg(String nodeId, int msgType, byte[] msg) throws P2pHostException {
+    public byte[] sendMsg(String nodeId, byte[] msgType, byte[] msg) throws P2pHostException {
         try {
             SendMsgReq req = SendMsgReq.newBuilder()
                     .setId(nodeId)
-                    .setMsgType(msgType)
+                    .setMsgType(ByteString.copyFrom(msgType))
                     .setMsg(ByteString.copyFrom(msg))
                     .build();
             SendMsgResp resp = blockingStub.sendMsg(req);

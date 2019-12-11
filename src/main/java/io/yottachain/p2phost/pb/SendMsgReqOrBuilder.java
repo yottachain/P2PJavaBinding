@@ -10,7 +10,7 @@ public interface SendMsgReqOrBuilder extends
   /**
    * <code>string id = 1;</code>
    */
-  java.lang.String getId();
+  String getId();
   /**
    * <code>string id = 1;</code>
    */
@@ -18,9 +18,9 @@ public interface SendMsgReqOrBuilder extends
       getIdBytes();
 
   /**
-   * <code>int32 msgType = 2;</code>
+   * <code>bytes msgType = 2;</code>
    */
-  int getMsgType();
+  com.google.protobuf.ByteString getMsgType();
 
   /**
    * <code>bytes msg = 3;</code>

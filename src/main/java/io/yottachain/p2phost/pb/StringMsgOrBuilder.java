@@ -10,7 +10,7 @@ public interface StringMsgOrBuilder extends
   /**
    * <code>string value = 1;</code>
    */
-  java.lang.String getValue();
+  String getValue();
   /**
    * <code>string value = 1;</code>
    */
