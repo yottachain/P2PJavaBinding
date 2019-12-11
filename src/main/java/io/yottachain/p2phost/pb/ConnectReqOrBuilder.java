@@ -10,7 +10,7 @@ public interface ConnectReqOrBuilder extends
   /**
    * <code>string id = 1;</code>
    */
-  String getId();
+  java.lang.String getId();
   /**
    * <code>string id = 1;</code>
    */
@@ -20,7 +20,7 @@ public interface ConnectReqOrBuilder extends
   /**
    * <code>repeated string addrs = 2;</code>
    */
-  java.util.List<String>
+  java.util.List<java.lang.String>
       getAddrsList();
   /**
    * <code>repeated string addrs = 2;</code>
@@ -29,7 +29,7 @@ public interface ConnectReqOrBuilder extends
   /**
    * <code>repeated string addrs = 2;</code>
    */
-  String getAddrs(int index);
+  java.lang.String getAddrs(int index);
   /**
    * <code>repeated string addrs = 2;</code>
    */

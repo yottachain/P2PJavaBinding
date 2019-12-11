@@ -87,10 +87,13 @@ public class P2pHost implements P2pHostInterface {
         }
     }
 
-    public byte[] sendMsg(String nodeId, String msgType, byte[] msg) throws P2pHostException {
-        Pointer msgPtr = new Memory(Native.getNativeSize(Byte.TYPE) * msg.length);
-        for (int i=0; i<msg.length; i++) {
-            msgPtr.setByte(i, msg[i]);
+    public byte[] sendMsg(String nodeId, int msgType, byte[] msg) throws P2pHostException {
+        Pointer msgPtr = null;
+        if (msg!=null && msg.length!=0) {
+            msgPtr = new Memory(Native.getNativeSize(Byte.TYPE) * msg.length);
+            for (int i = 0; i < msg.length; i++) {
+                msgPtr.setByte(i, msg[i]);
+            }
         }
         Pointer sendMsgRetPtr = P2pHostWrapper.P2pHostLib.INSTANCE.SendMsgWrp(nodeId, msgType, msgPtr, msg.length);
         Native.free(Pointer.nativeValue(msgPtr));

@@ -7,14 +7,10 @@ import com.ibm.etcd.client.KvStoreClient;
 import com.ibm.etcd.client.kv.KvClient;
 import io.grpc.netty.shaded.io.netty.util.internal.StringUtil;
 import io.yottachain.p2phost.callbackserver.Server;
-import io.yottachain.p2phost.constants.MsgType;
 import io.yottachain.p2phost.core.P2pHost;
 import io.yottachain.p2phost.core.exception.P2pHostException;
 import io.yottachain.p2phost.core.wrapper.P2pHostWrapper;
-import io.yottachain.p2phost.interfaces.BPNodeCallback;
-import io.yottachain.p2phost.interfaces.NodeCallback;
-import io.yottachain.p2phost.interfaces.P2pHostInterface;
-import io.yottachain.p2phost.interfaces.UserCallback;
+import io.yottachain.p2phost.interfaces.*;
 import io.yottachain.p2phost.pb.PbClient;
 
 import java.io.IOException;
@@ -136,109 +132,130 @@ public class YottaP2P {
         client.disconnect(nodeId);
     }
 
-    public static byte[] sendToBPUMsg(String nodeId, byte[] msg) throws P2pHostException {
-        return client.sendMsg(nodeId, MsgType.USER_MSG, msg);
+    public static byte[] sendMsg(String nodeId, int msgType, byte[] msg) throws P2pHostException {
+        return client.sendMsg(nodeId, msgType, msg);
     }
 
-    public static byte[] sendToBPMsg(String nodeId, byte[] msg) throws P2pHostException {
-        return client.sendMsg(nodeId, MsgType.BPNODE_MSG, msg);
-    }
+//    public static byte[] sendToBPUMsg(String nodeId, byte[] msg) throws P2pHostException {
+//        return client.sendMsg(nodeId, MsgType.USER_MSG, msg);
+//    }
+//
+//    public static byte[] sendToBPMsg(String nodeId, byte[] msg) throws P2pHostException {
+//        return client.sendMsg(nodeId, MsgType.BPNODE_MSG, msg);
+//    }
+//
+//    public static byte[] sendToNodeMsg(String nodeId, byte[] msg) throws P2pHostException {
+//        return client.sendMsg(nodeId, MsgType.NODE_MSG, msg);
+//    }
 
-    public static byte[] sendToNodeMsg(String nodeId, byte[] msg) throws P2pHostException {
-        return client.sendMsg(nodeId, MsgType.NODE_MSG, msg);
-    }
-
-    public static void registerUserCallback(UserCallback userCallback) {
-//        try {
-//            P2pHostWrapper.P2pHostLib.P2pHostCallback cb = P2pHost.createCallbackWrapper(new MsgCallback() {
-//                @Override
-//                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
-//                    return userCallback.onMessageFromUser(msg, publicKey);
-//                }
-//            });
-//            callbackMap.put(userCallback.type(), cb);
-//            P2pHost.registerHandler(userCallback.type(), cb);
-//            //Native.setCallbackThreadInitializer(cb, new CallbackThreadInitializer(true, false, "JNA-Callback-Thread-" + userCallback.type()));
-//        } catch (P2pHostException e) {
-//            throw new RuntimeException(e);
-//        }
+    public static void registerCallback(Callback callback) {
         try {
             if (Server.server==null) {
                 Server.startCallbackServer();
             }
-            Server.registerCallback(userCallback.type(), new Server.ServerCallback() {
+            Server.registerCallback(callback.type(), new Server.ServerCallback() {
                 @Override
                 public byte[] onMessage(byte[] data, String pubkey) {
-                    return userCallback.onMessageFromUser(data, pubkey);
+                    return callback.onMessage(data, pubkey);
                 }
             });
-            client.registerHandler(userCallback.type(), null);
+            client.registerHandler(callback.type(), null);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void registerBPNodeCallback(BPNodeCallback bpNodeCallback) {
+//    public static void registerUserCallback(UserCallback userCallback) {
+////        try {
+////            P2pHostWrapper.P2pHostLib.P2pHostCallback cb = P2pHost.createCallbackWrapper(new MsgCallback() {
+////                @Override
+////                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
+////                    return userCallback.onMessageFromUser(msg, publicKey);
+////                }
+////            });
+////            callbackMap.put(userCallback.type(), cb);
+////            P2pHost.registerHandler(userCallback.type(), cb);
+////            //Native.setCallbackThreadInitializer(cb, new CallbackThreadInitializer(true, false, "JNA-Callback-Thread-" + userCallback.type()));
+////        } catch (P2pHostException e) {
+////            throw new RuntimeException(e);
+////        }
 //        try {
-//            P2pHostWrapper.P2pHostLib.P2pHostCallback cb = P2pHost.createCallbackWrapper(new MsgCallback() {
+//            if (Server.server==null) {
+//                Server.startCallbackServer();
+//            }
+//            Server.registerCallback(userCallback.type(), new Server.ServerCallback() {
 //                @Override
-//                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
-//                    return bpNodeCallback.onMessageFromBPNode(msg, publicKey);
+//                public byte[] onMessage(byte[] data, String pubkey) {
+//                    return userCallback.onMessageFromUser(data, pubkey);
 //                }
 //            });
-//            callbackMap.put(bpNodeCallback.type(), cb);
-//            P2pHost.registerHandler(bpNodeCallback.type(), cb);
-//            //Native.setCallbackThreadInitializer(cb, new CallbackThreadInitializer(true, false, "JNA-Callback-Thread-" + bpNodeCallback.type()));
-//        } catch (P2pHostException e) {
+//            client.registerHandler(userCallback.type(), null);
+//        } catch (Exception e) {
 //            throw new RuntimeException(e);
 //        }
-        try {
-            if (Server.server==null) {
-                Server.startCallbackServer();
-            }
-            Server.registerCallback(bpNodeCallback.type(), new Server.ServerCallback() {
-                @Override
-                public byte[] onMessage(byte[] data, String pubkey) {
-                    return bpNodeCallback.onMessageFromBPNode(data, pubkey);
-                }
-            });
-            client.registerHandler(bpNodeCallback.type(), null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void registerNodeCallback(NodeCallback nodeCallback) {
+//    }
+//
+//    public static void registerBPNodeCallback(BPNodeCallback bpNodeCallback) {
+////        try {
+////            P2pHostWrapper.P2pHostLib.P2pHostCallback cb = P2pHost.createCallbackWrapper(new MsgCallback() {
+////                @Override
+////                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
+////                    return bpNodeCallback.onMessageFromBPNode(msg, publicKey);
+////                }
+////            });
+////            callbackMap.put(bpNodeCallback.type(), cb);
+////            P2pHost.registerHandler(bpNodeCallback.type(), cb);
+////            //Native.setCallbackThreadInitializer(cb, new CallbackThreadInitializer(true, false, "JNA-Callback-Thread-" + bpNodeCallback.type()));
+////        } catch (P2pHostException e) {
+////            throw new RuntimeException(e);
+////        }
 //        try {
-//            P2pHostWrapper.P2pHostLib.P2pHostCallback cb = P2pHost.createCallbackWrapper(new MsgCallback() {
+//            if (Server.server==null) {
+//                Server.startCallbackServer();
+//            }
+//            Server.registerCallback(bpNodeCallback.type(), new Server.ServerCallback() {
 //                @Override
-//                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
-//                    return nodeCallback.onMessageFromNode(msg, publicKey);
+//                public byte[] onMessage(byte[] data, String pubkey) {
+//                    return bpNodeCallback.onMessageFromBPNode(data, pubkey);
 //                }
 //            });
-//            callbackMap.put(nodeCallback.type(), cb);
-//            P2pHost.registerHandler(nodeCallback.type(), cb);
-//            //Native.setCallbackThreadInitializer(cb, new CallbackThreadInitializer(true, false, "JNA-Callback-Thread-" + nodeCallback.type()));
-//        } catch (P2pHostException e) {
+//            client.registerHandler(bpNodeCallback.type(), null);
+//        } catch (Exception e) {
 //            throw new RuntimeException(e);
 //        }
-        try {
-            if (Server.server==null) {
-                Server.startCallbackServer();
-            }
-            Server.registerCallback(nodeCallback.type(), new Server.ServerCallback() {
-                @Override
-                public byte[] onMessage(byte[] data, String pubkey) {
-                    return nodeCallback.onMessageFromNode(data, pubkey);
-                }
-            });
-            client.registerHandler(nodeCallback.type(), null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    }
+//
+//    public static void registerNodeCallback(NodeCallback nodeCallback) {
+////        try {
+////            P2pHostWrapper.P2pHostLib.P2pHostCallback cb = P2pHost.createCallbackWrapper(new MsgCallback() {
+////                @Override
+////                public byte[] onMessage(String msgType, byte[] msg, String publicKey) {
+////                    return nodeCallback.onMessageFromNode(msg, publicKey);
+////                }
+////            });
+////            callbackMap.put(nodeCallback.type(), cb);
+////            P2pHost.registerHandler(nodeCallback.type(), cb);
+////            //Native.setCallbackThreadInitializer(cb, new CallbackThreadInitializer(true, false, "JNA-Callback-Thread-" + nodeCallback.type()));
+////        } catch (P2pHostException e) {
+////            throw new RuntimeException(e);
+////        }
+//        try {
+//            if (Server.server==null) {
+//                Server.startCallbackServer();
+//            }
+//            Server.registerCallback(nodeCallback.type(), new Server.ServerCallback() {
+//                @Override
+//                public byte[] onMessage(byte[] data, String pubkey) {
+//                    return nodeCallback.onMessageFromNode(data, pubkey);
+//                }
+//            });
+//            client.registerHandler(nodeCallback.type(), null);
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
-    public static void main(String[] args) throws Exception {
+    public static void main1(String[] args) throws Exception {
         //首先必须先启动P2P服务，8888为端口，5JdDoNZwSADC3KG7xCh7mCF62fKp86sLf3GUNDY2B8t2UUB9HdJ为私钥（Base58形式，节点之间须不同）
         YottaP2P.start(8888, "5JdDoNZwSADC3KG7xCh7mCF62fKp86sLf3GUNDY2B8t2UUB9HdJ");
         //打印当前节点ID（由公钥生成，Base58形式）
@@ -250,9 +267,9 @@ public class YottaP2P {
         }
         final Random r = new Random();
         //注册客户端回调接口
-        YottaP2P.registerUserCallback(new UserCallback() {
+        YottaP2P.registerCallback(new Callback() {
             @Override
-            public byte[] onMessageFromUser(byte[] data, String pubkey) {
+            public byte[] onMessage(byte[] data, String pubkey) {
                 System.out.println("Received: " + new String(data)); //打印接收的消息
                 System.out.println("Publickey: " + pubkey); //打印公钥（Base58形式）
 //                try {
@@ -269,7 +286,7 @@ public class YottaP2P {
         Thread.sleep(100000000);
     }
 
-    public static void main1(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         //首先必须先启动P2P服务，9999为端口，5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ为私钥（Base58形式，节点之间须不同）
         YottaP2P.start(9999, "5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ");
         //打印当前节点ID（由公钥生成，Base58形式）
@@ -280,21 +297,21 @@ public class YottaP2P {
             System.out.println(str);
         }
         //对端节点地址，来自对端的addrs方法调用
-        String[] serverAddrs = {"/ip4/127.0.0.1/tcp/8888"};
+        String[] serverAddrs = {"/ip4/10.0.1.137/tcp/8888"};
         //连接对端节点，16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM为对端ID，来自id方法调用，serverAddrs为对端监听地址列表
         YottaP2P.connect("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", serverAddrs);
 //        YottaP2P.disconnect("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM");
 //        String[] serverAddrs2 = {"/ip4/129.28.188.167/tcp/9999"};
 //        YottaP2P.connect("16Uiu2HAm3Rea9AGSJYZLgU3ZqdzNoZfb5UUmYF8SAN7FH97HNauq", serverAddrs2);
         //向对端发送用户端消息并获取响应消息，16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM为对端ID
-        for (int i=0; i<5000; i++) {
+        for (int i=0; i<1; i++) {
             final int index = i;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         for (int i=0; i<10; i++) {
-                            byte[] ret = YottaP2P.sendToBPUMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", ("hello a" + i).getBytes());
+                            byte[] ret = YottaP2P.sendMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", 0, ("hello a" + i).getBytes());
                             System.out.println(new String(ret));
                         }
                     } catch (Exception e) {

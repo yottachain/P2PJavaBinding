@@ -69,7 +69,7 @@ public class P2pHostWrapper {
         Pointer AddrsWrp();
         Pointer ConnectWrp(String nodeId, Pointer addr, int size);
         Pointer DisconnectWrp(String nodeId);
-        Pointer SendMsgWrp(String nodeId, String msgType, Pointer msg, long size);
+        Pointer SendMsgWrp(String nodeId, int msgType, Pointer msg, long size);
         Pointer RegisterHandlerWrp(String msgType, P2pHostCallback callback);
         Pointer UnregisterHandlerWrp(String msgType);
 

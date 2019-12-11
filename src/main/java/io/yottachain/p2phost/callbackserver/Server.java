@@ -9,7 +9,9 @@ import io.undertow.server.handlers.form.FormData;
 import io.undertow.server.handlers.form.FormDataParser;
 import io.undertow.server.handlers.form.FormParserFactory;
 import io.undertow.util.Headers;
+import io.yottachain.p2phost.constants.MsgType;
 import io.yottachain.p2phost.core.exception.P2pHostException;
+import io.yottachain.p2phost.interfaces.Callback;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -60,13 +62,13 @@ public class Server {
                         final FormDataParser parser = FormParserFactory.builder().build().createParser(exchange);
                         try {
                             FormData parameters = parser.parseBlocking();
-                            FormData.FormValue typeForm = parameters.getFirst("type");
-                            if (typeForm==null) {
-                                exchange.setStatusCode(500);
-                                exchange.getResponseSender().send("type can not be null");
-                                return;
-                            }
-                            String type = typeForm.getValue();
+//                            FormData.FormValue typeForm = parameters.getFirst("type");
+//                            if (typeForm==null) {
+//                                exchange.setStatusCode(500);
+//                                exchange.getResponseSender().send("type can not be null");
+//                                return;
+//                            }
+//                            String type = typeForm.getValue();
                             FormData.FormValue dataForm = parameters.getFirst("data");
                             if (dataForm==null) {
                                 exchange.setStatusCode(500);
@@ -87,10 +89,10 @@ public class Server {
 //                            System.arraycopy(bytes, 0, c, 0, bytes.length);
 //                            System.arraycopy(csum, 0, c, bytes.length, 4);
 //                            pubkey = Base58.encode(c);
-                            ServerCallback cb = callbackMap.get(type);
+                            ServerCallback cb = callbackMap.get(MsgType.DEFAULT_MSG);
                             if (cb==null) {
                                 exchange.setStatusCode(500);
-                                exchange.getResponseSender().send("No callback function for type " + type);
+                                exchange.getResponseSender().send("No callback function registered");
                                 return;
                             }
                             byte[] retVal = cb.onMessage(data, pubkey);

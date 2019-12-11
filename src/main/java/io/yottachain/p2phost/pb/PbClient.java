@@ -77,7 +77,7 @@ public class PbClient implements P2pHostInterface {
     }
 
     @Override
-    public byte[] sendMsg(String nodeId, String msgType, byte[] msg) throws P2pHostException {
+    public byte[] sendMsg(String nodeId, int msgType, byte[] msg) throws P2pHostException {
         try {
             SendMsgReq req = SendMsgReq.newBuilder()
                     .setId(nodeId)
