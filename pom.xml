@@ -105,6 +105,12 @@
                         </goals>
                         <configuration>
                             <tasks>
+                                <mkdir dir="${basedir}/src/main/resources/linux-x86-64"/>
+                                <mkdir dir="${basedir}/src/main/resources/win32-x86-64"/>
+                                <mkdir dir="${basedir}/src/main/resources/linux-aarch64"/>
+                                <mkdir dir="${basedir}/src/test/resources/linux-x86-64"/>
+                                <mkdir dir="${basedir}/src/test/resources/win32-x86-64"/>
+                                <mkdir dir="${basedir}/src/test/resources/linux-aarch64"/>
                                 <delete>
                                     <fileset dir="${basedir}/src/main/resources" includes="**/*.so"/>
                                     <fileset dir="${basedir}/src/main/resources" includes="**/*.dll"/>
@@ -136,7 +142,7 @@
                                     <arg value="build"/>
                                     <arg value="-buildmode=c-shared"/>
                                     <arg value="-o"/>
-                                    <arg value="${basedir}/src/main/resources/win32-x86-64/p2phost.so"/>
+                                    <arg value="${basedir}/src/main/resources/win32-x86-64/p2phost.dll"/>
                                     <arg value="wrapper/wrapper.go"/>
                                 </exec>
                                 <exec executable="go" dir="${project.build.directory}/p2phost">>
@@ -150,6 +156,9 @@
                                     <arg value="${basedir}/src/main/resources/linux-aarch64/p2phost.so"/>
                                     <arg value="wrapper/wrapper.go"/>
                                 </exec>
+                                <copy tofile="${basedir}/src/test/resources/linux-x86-64/p2phost.so" file="${basedir}/src/main/resources/linux-x86-64/p2phost.so"/>
+                                <copy tofile="${basedir}/src/test/resources/win32-x86-64/p2phost.dll" file="${basedir}/src/main/resources/win32-x86-64/p2phost.dll"/>
+                                <copy tofile="${basedir}/src/test/resources/linux-aarch64/p2phost.so" file="${basedir}/src/main/resources/linux-aarch64/p2phost.so"/>
                                 <delete>
                                     <fileset dir="${basedir}/src/main/resources" includes="**/*.h"/>
                                 </delete>

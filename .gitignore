@@ -108,5 +108,5 @@ local.properties
 .texlipse
 
 # temp file
-.so
-.dll
+*.so
+*.dll
