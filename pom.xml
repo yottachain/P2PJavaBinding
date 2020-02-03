@@ -94,7 +94,71 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <delete>
+                                    <fileset dir="${basedir}/src/main/resources" includes="**/*.so"/>
+                                    <fileset dir="${basedir}/src/main/resources" includes="**/*.dll"/>
+                                </delete>
+                                <delete dir="${project.build.directory}/p2phost"/>
+                                <exec executable="git">
+                                    <arg value="clone"/>
+                                    <arg value="git@github.com:yottachain/P2PHost.git"/>
+                                    <arg value="-b"/>
+                                    <arg value="relay"/>
+                                    <arg value="${project.build.directory}/p2phost"/>
+                                </exec>
+                                <exec executable="go" dir="${project.build.directory}/p2phost">>
+                                    <env key="CC" value="x86_64-linux-gnu-gcc"/>
+                                    <env key="GOOS" value="linux"/>
+                                    <env key="GOARCH" value="amd64"/>
+                                    <env key="CGO_ENABLED" value="1"/>
+                                    <arg value="build"/>
+                                    <arg value="-buildmode=c-shared"/>
+                                    <arg value="-o"/>
+                                    <arg value="${basedir}/src/main/resources/linux-x86-64/p2phost.so"/>
+                                    <arg value="wrapper/wrapper.go"/>
+                                </exec>
+                                <exec executable="go" dir="${project.build.directory}/p2phost">>
+                                    <env key="CC" value="x86_64-w64-mingw32-gcc"/>
+                                    <env key="GOOS" value="windows"/>
+                                    <env key="GOARCH" value="amd64"/>
+                                    <env key="CGO_ENABLED" value="1"/>
+                                    <arg value="build"/>
+                                    <arg value="-buildmode=c-shared"/>
+                                    <arg value="-o"/>
+                                    <arg value="${basedir}/src/main/resources/win32-x86-64/p2phost.so"/>
+                                    <arg value="wrapper/wrapper.go"/>
+                                </exec>
+                                <exec executable="go" dir="${project.build.directory}/p2phost">>
+                                    <env key="CC" value="aarch64-linux-gnu-gcc"/>
+                                    <env key="GOOS" value="linux"/>
+                                    <env key="GOARCH" value="arm64"/>
+                                    <env key="CGO_ENABLED" value="1"/>
+                                    <arg value="build"/>
+                                    <arg value="-buildmode=c-shared"/>
+                                    <arg value="-o"/>
+                                    <arg value="${basedir}/src/main/resources/linux-aarch64/p2phost.so"/>
+                                    <arg value="wrapper/wrapper.go"/>
+                                </exec>
+                                <delete>
+                                    <fileset dir="${basedir}/src/main/resources" includes="**/*.h"/>
+                                </delete>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-        <finalName>yottap2p-${project.version}</finalName>
+        <finalName>p2p-wrapper-${project.version}</finalName>
     </build>
 </project>
