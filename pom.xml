@@ -124,7 +124,7 @@
                                     <arg value="clone"/>
                                     <arg value="-b"/>
                                     <arg value="relay"/>
-                                    <arg value="git@github.com:yottachain/P2PHost.git"/>
+                                    <arg value="https://github.com/yottachain/P2PHost.git"/>
                                     <arg value="${project.build.directory}/p2phost"/>
                                 </exec>
                                 <exec executable="go" dir="${project.build.directory}/p2phost">
