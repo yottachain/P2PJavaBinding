@@ -123,7 +123,7 @@
                                 <exec executable="git">
                                     <arg value="clone"/>
                                     <arg value="-b"/>
-                                    <arg value="relay"/>
+                                    <arg value="dev"/>
                                     <arg value="https://github.com/yottachain/P2PHost.git"/>
                                     <arg value="${project.build.directory}/p2phost"/>
                                 </exec>
@@ -175,6 +175,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <finalName>p2p-wrapper-${project.version}</finalName>
+        <finalName>yottap2p-${project.version}</finalName>
     </build>
 </project>
