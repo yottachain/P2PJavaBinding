@@ -175,6 +175,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <finalName>yottap2p-${project.version}</finalName>
+        <finalName>p2p-wrapper-${project.version}</finalName>
     </build>
 </project>
