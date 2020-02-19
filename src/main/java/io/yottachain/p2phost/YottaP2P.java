@@ -108,7 +108,13 @@ public class YottaP2P {
             logger.info("Create P2PHost GRPC connection: " + p2phostGRPCHostname + ":" + p2phostGRPCPort);
         } else {
             logger.info("NodeMgmt is under embeded mode");
+            String p2phostGRPCPortStr = System.getenv("P2PHOST_GRPCPORT");
+            int p2phostGRPCPort = 11002;
+            try {
+                p2phostGRPCPort = Integer.parseInt(p2phostGRPCPortStr);
+            } catch (Exception e) {}
             client = new P2pHost(port, privateKey);
+            client = new PbClient("localhost", p2phostGRPCPort);
         }
     }
 
@@ -286,7 +292,7 @@ public class YottaP2P {
         Thread.sleep(100000000);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main2(String[] args) throws Exception {
         //首先必须先启动P2P服务，9999为端口，5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ为私钥（Base58形式，节点之间须不同）
         YottaP2P.start(9999, "5KQKydL7TuRwjzaFSK4ezH9RUXWuYHW1yYDp5CmQfsfTuu9MBLZ");
         //打印当前节点ID（由公钥生成，Base58形式）
