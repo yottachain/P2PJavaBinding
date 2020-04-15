@@ -10,7 +10,7 @@ public interface SendMsgReqOrBuilder extends
   /**
    * <code>string id = 1;</code>
    */
-  String getId();
+  java.lang.String getId();
   /**
    * <code>string id = 1;</code>
    */
