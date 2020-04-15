@@ -10,7 +10,7 @@ public interface StringListMsgOrBuilder extends
   /**
    * <code>repeated string values = 1;</code>
    */
-  java.util.List<String>
+  java.util.List<java.lang.String>
       getValuesList();
   /**
    * <code>repeated string values = 1;</code>
@@ -19,7 +19,7 @@ public interface StringListMsgOrBuilder extends
   /**
    * <code>repeated string values = 1;</code>
    */
-  String getValues(int index);
+  java.lang.String getValues(int index);
   /**
    * <code>repeated string values = 1;</code>
    */

@@ -115,4 +115,14 @@ public class PbClient implements P2pHostInterface {
             throw new P2pHostException("", e);
         }
     }
+
+    @Override
+    public List<String> getOptNodes(List<String> nodes) throws P2pHostException {
+        try {
+            StringListMsg resp = blockingStub.withDeadlineAfter(p2phostGRPCCliTimeout, TimeUnit.MILLISECONDS).getOptNodes(StringListMsg.newBuilder().addAllValues(nodes).build());
+            return resp.getValuesList();
+        } catch (StatusRuntimeException e) {
+            throw new P2pHostException("", e);
+        }
+    }
 }

@@ -11,6 +11,8 @@ import io.yottachain.p2phost.core.wrapper.P2pHostWrapper;
 import io.yottachain.p2phost.interfaces.P2pHostInterface;
 import io.yottachain.p2phost.utils.Ripemd160;
 
+import java.util.List;
+
 public class P2pHost implements P2pHostInterface {
 
     public P2pHost(int port, String privateKey) throws P2pHostException {
@@ -174,4 +176,7 @@ public class P2pHost implements P2pHostInterface {
         };
     }
 
+    public List<String> getOptNodes(List<String> nodes) throws P2pHostException {
+        return null;
+    }
 }

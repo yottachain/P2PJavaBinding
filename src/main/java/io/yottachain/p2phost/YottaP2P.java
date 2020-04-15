@@ -15,6 +15,7 @@ import io.yottachain.p2phost.pb.PbClient;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -140,6 +141,10 @@ public class YottaP2P {
 
     public static byte[] sendMsg(String nodeId, byte[] msgType, byte[] msg) throws P2pHostException {
         return client.sendMsg(nodeId, msgType, msg);
+    }
+
+    public static List<String> getOptNodes(List<String> nodes) throws P2pHostException {
+        return client.getOptNodes(nodes);
     }
 
 //    public static byte[] sendToBPUMsg(String nodeId, byte[] msg) throws P2pHostException {
