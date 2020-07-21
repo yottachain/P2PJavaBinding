@@ -138,8 +138,8 @@ public class YottaP2P {
         client.disconnect(nodeId);
     }
 
-    public static byte[] sendMsg(String nodeId, byte[] msgType, byte[] msg) throws P2pHostException {
-        return client.sendMsg(nodeId, msgType, msg);
+    public static byte[] sendMsg(String nodeId, String addr, byte[] msgType, byte[] msg) throws P2pHostException {
+        return client.sendMsg(nodeId, addr, msgType, msg);
     }
 
 //    public static byte[] sendToBPUMsg(String nodeId, byte[] msg) throws P2pHostException {
@@ -317,7 +317,7 @@ public class YottaP2P {
                 public void run() {
                     try {
                         for (int i=0; i<10; i++) {
-                            byte[] ret = YottaP2P.sendMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", new byte[0], ("hello a" + i).getBytes());
+                            byte[] ret = YottaP2P.sendMsg("16Uiu2HAm44FX3YuzGXJgHMqnyMM5zCzeT6PUoBNZkz66LutfRREM", "", new byte[0], ("hello a" + i).getBytes());
                             System.out.println(new String(ret));
                         }
                     } catch (Exception e) {

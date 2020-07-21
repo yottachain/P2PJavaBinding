@@ -9,7 +9,7 @@ public interface P2pHostInterface {
     String[] addrs() throws P2pHostException;
     void connect(String nodeId, String[] addrs) throws P2pHostException;
     void disconnect(String nodeId) throws P2pHostException;
-    byte[] sendMsg(String nodeId, byte[] msgType, byte[] msg) throws P2pHostException;
+    byte[] sendMsg(String nodeId, String addr, byte[] msgType, byte[] msg) throws P2pHostException;
     void registerHandler(String msgType, P2pHostWrapper.P2pHostLib.P2pHostCallback callback) throws P2pHostException;
     void unregisterHandler(String msgType) throws P2pHostException;
 }
