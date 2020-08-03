@@ -33,6 +33,8 @@ public class PbClient implements P2pHostInterface {
             blockingStub.withDeadlineAfter(p2phostGRPCCliTimeout, TimeUnit.MILLISECONDS).close(Empty.newBuilder().build());
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -43,6 +45,8 @@ public class PbClient implements P2pHostInterface {
             return resp.getValue();
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -53,6 +57,8 @@ public class PbClient implements P2pHostInterface {
             return resp.getValuesList().toArray(new String[0]);
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -70,6 +76,8 @@ public class PbClient implements P2pHostInterface {
             blockingStub.withDeadlineAfter(p2phostGRPCCliTimeout, TimeUnit.MILLISECONDS).connect(req);
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -80,6 +88,8 @@ public class PbClient implements P2pHostInterface {
             blockingStub.withDeadlineAfter(p2phostGRPCCliTimeout, TimeUnit.MILLISECONDS).disConnect(req);
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -95,6 +105,8 @@ public class PbClient implements P2pHostInterface {
             return resp.getValue().toByteArray();
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -113,6 +125,8 @@ public class PbClient implements P2pHostInterface {
             blockingStub.withDeadlineAfter(p2phostGRPCCliTimeout, TimeUnit.MILLISECONDS).unregisterHandler(StringMsg.newBuilder().setValue(msgType).build());
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 
@@ -123,6 +137,8 @@ public class PbClient implements P2pHostInterface {
             return resp.getValuesList();
         } catch (StatusRuntimeException e) {
             throw new P2pHostException("", e);
+        } catch (Exception e) {
+            throw new RuntimeException("", e);
         }
     }
 }
