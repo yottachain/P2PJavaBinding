@@ -130,4 +130,9 @@ public class PbClient implements P2pHostInterface {
             throw new RuntimeException("", e);
         }
     }
+
+    @Override
+    public List<String> getOptNodes(List<String> nodes) throws P2pHostException {
+        return null;
+    }
 }
